@@ -2,6 +2,8 @@
 require_once 'lib/common.php';
 require_once 'lib/view-post.php';
 
+session_start();
+
 //get the id of the post from get parameters
 if(isset($_GET['post_id']))
 {
