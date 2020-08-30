@@ -11,12 +11,14 @@ if ($_POST)
     // Here's the install
     $pdo = getPDO();
     list($rowCounts, $error) = installBlog($pdo);
+
     $password = '';
     if (!$error)
     {
         $username = 'admin';
         list($password, $error) = createUser($pdo, $username);
     }
+
     $_SESSION['count'] = $rowCounts;
     $_SESSION['error'] = $error;
     $_SESSION['username'] = $username;
@@ -43,7 +45,6 @@ if (isset($_SESSION['try-install']))
     unset($_SESSION['username']);
     unset($_SESSION['password']);
     unset($_SESSION['try-install']);
-
 }
 
 ?>
@@ -51,7 +52,7 @@ if (isset($_SESSION['try-install']))
 <html>
     <head>
         <title>Blog installer</title>
-        <?php require 'tempaltes/head.php' ?>
+        <?php require 'templates/head.php' ?>
     </head>
     <body>
         <?php if ($attempted): ?>
@@ -79,7 +80,6 @@ if (isset($_SESSION['try-install']))
                     The new '<?php echo htmlEscape($username) ?>' password is
                     <span class="install-password"><?php echo htmlEscape($password) ?></span>
                     (copy it to clipboard if you wish).
-
                 </div>
 
                 <p>
